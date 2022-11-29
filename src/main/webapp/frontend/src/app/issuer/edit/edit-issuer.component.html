@@ -1,0 +1,75 @@
+<section class="issuer_section">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <div class="center-pill text-center">
+              <h3 style="color: #337ab7;">Update Issuer</h3>
+           </div>
+            <div class="wrapper">
+              <form [formGroup]="editIssuerForm" (ngSubmit)="editIssuer()">
+                <div class="row">
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="name">Name</label>
+                      <input type="text" formControlName="name" id="name" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="label">Label</label>
+                      <input type="text" formControlName="label" id="label" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="label">Description</label>
+                      <input type="text" formControlName="description" id="description" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="createdBy">Created By</label>
+                      <input type="text" formControlName="createdBy" id="createdBy" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="updateState">UpdateState</label>
+                      <select  formControlName="updateState" id="updateState" class="form-select">
+                        <option value="PUSHED_TO_CONFIG">PUSHED_TO_CONFIG</option>
+                        <option value="WAITING_FOR_PUSH">WAITING_FOR_PUSH</option>
+                        <option value="WAITING_VALIDATION">WAITING_VALIDATION</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="availableAuthentMeans">Available AuthentMeans</label>
+                      <input type="text" formControlName="availableAuthentMeans" id="availableAuthentMeans" class="form-control">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <div class="form-group text-center">
+                      <a href="/" class="btn btn-primary" style="margin: 0px 5px;">Back</a>
+                      <button type="submit" [disabled]="!editIssuerForm.valid" class="btn btn-primary">Update Issuer</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="row  text-center" *ngIf="filename">
+                  <div class="col"><br>
+                    <button type="button" class="btn btn-primary btn-block"  (click)="downloadFile()">Download - {{filename}}</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+

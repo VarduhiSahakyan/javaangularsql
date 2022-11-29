@@ -1,0 +1,39 @@
+<section class="crypto-section">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+          <div class="card">
+            <div class="card-body">
+              <div class="center-pill text-center">
+                <h3 style="color: #337ab7;">Delete CryptoConfig</h3>
+             </div>
+              <div  class="wrapper">
+                <div>
+                  <div class="alert alert-danger" role="alert">
+                    <span style="font-size: 36px;" class="material-icons">dangerous</span>
+                    <hr>
+                    <h4 class="alert-heading">Dangerous message</h4>
+                    <p>This action can change your table structure. Please be aware.</p>
+                    <hr>
+                    <div class="form-group">
+                      <a routerLink="/crypto" class="btn btn-outline-primary">Back</a>
+                      <button  type="button" class="btn btn-outline-danger" style="margin: 0px 5px;" (click)="onDelete()">Delete</button>
+                    </div>
+                  </div>
+                  <div class="form-group row  text-center" *ngIf="filename">
+                    <div class="col"><br>
+                      <button class="btn btn-primary btn-block" type="button" routerLink="/crypto" (click)="downloadFile()">Download
+                        - {{filename}}</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2"></div>
+      </div>
+    </div>
+  </section>
+

@@ -1,0 +1,106 @@
+<section class="crypto-section">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <div class="center-pill text-center">
+              <h3 style="color: #337ab7;">Insert Crypto Query</h3>
+              <div class="center-pill text-center" *ngIf="validMessage != ''">
+              </div>
+            </div>
+            <div class="wrapper">
+              <form [formGroup]="cryptoConfigForm" (ngSubmit)="addNewCryptoConfig()">
+                <div class="row">
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="protocolOne">Protocol one</label>
+                      <input type="text" id="protocolOne" formControlName="protocolOne" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="protocolTwo">Protocol two</label>
+                      <input type="text" id="protocolTwo" formControlName="protocolTwo" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="description">Description</label>
+                      <input type="text" id="description" formControlName="description" class="form-control">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-4"></div>
+                  <div class="col-4">
+                    <p class="has-info text-center" style="color: green">{{validMessage}} </p>
+                    <div class="form-group text-center">
+                      <button type="submit" [disabled]="!cryptoConfigForm.valid" class="btn btn-primary">Generate Sql
+                      </button>
+                    </div>
+                  </div>
+                  <div class="col-4"></div>
+                </div>
+                <div class="row  text-center" *ngIf="filename">
+                  <div class="col"><br>
+                    <button class="btn btn-primary btn-block" type="button" (click)="downloadFile()">Download
+                      -{{filename}}</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="center-pill text-center"
+             style="border: 1px solid white; background-color: white ; padding-top: 10px; padding-bottom: 10px">
+          <h2 style="color: #337ab7">Crypto Configs List</h2>
+        </div>
+        <div class="card-body">
+          <div>
+            <table class="table text-center table-bordered">
+              <thead>
+              <tr>
+                <th>Description</th>
+                <th>Protocol One</th>
+                <th>Protocol Two</th>
+                <th scope="col" colspan="2">Actions</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let cryptoConfig of cryptoConfigs | paginate: { itemsPerPage: 2, currentPage: page, totalItems: total}" class="wrapper">
+                <td>{{cryptoConfig.description}}</td>
+                <td><textarea class="textarea-resize-hide" rows="8" cols="80"
+                              readonly>{{cryptoConfig.protocolOne}}</textarea></td>
+                <td><textarea class="textarea-resize-hide" rows="8" cols="80"
+                              readonly>{{cryptoConfig.protocolTwo}}</textarea></td>
+                <td>
+                  <a [routerLink]="['/crypto/edit']" [state]="cryptoConfig" class="btn btn-outline-primary"
+                     style="border: none;"><i style="font-size: 1.5rem; " class="fa fa-pencil-square-o"></i></a>
+                </td>
+                <td>
+                  <a routerLink="/crypto/{{ cryptoConfig.id }}/delete" class="btn btn-outline-danger"
+                     style="border: none;">
+                    <i style="font-size: 1.5rem; " class="fa fa-trash-o"></i></a>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+            <div class="text-center">
+              <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,88 @@
+<section class="profile_section">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <div class="center-pill text-center">
+              <h3 style="color: #337ab7;">Update Profile</h3>
+            </div>
+            <div class="wrapper">
+              <form [formGroup]="profileEditForm" (ngSubmit)="editProfile()">
+                <div class="row">
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="createdBy">Created By</label>
+                      <input type="text" id="createdBy" formControlName="createdBy" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="description">Description</label>
+                      <input type="text" id="description" formControlName="description" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="lastUpdateBy">Last Update By</label>
+                      <input type="text" id="lastUpdateBy" formControlName="lastUpdateBy" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="name">Name</label>
+                      <input type="text" id="name" formControlName="name" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="updateState">Update State</label>
+                      <select id="updateState"  formControlName="updateState" class="form-select">
+                        <option value="PUSHED_TO_CONFIG">PUSHED_TO_CONFIG</option>
+                        <option value="WAITING_FOR_PUSH">WAITING_FOR_PUSH</option>
+                        <option value="WAITING_VALIDATION">WAITING_VALIDATION</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="maxAttempts">Max Attempts</label>
+                      <input type="number" id="maxAttempts" formControlName="maxAttempts" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="dataEntryFormat">Data Entry Format</label>
+                      <input type="text" id="dataEntryFormat" formControlName="dataEntryFormat" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="dataEntryAllowedPattern">Data Entry Allowed Pattern</label>
+                      <input type="text" id="dataEntryAllowedPattern" formControlName="dataEntryAllowedPattern" class="form-control">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-4"></div>
+                  <div class="col-4">
+                    <div class="form-group text-center">
+                      <a routerLink="/profile" class="btn btn-primary btn-block" style="margin: 0px 5px;">Back</a>
+                      <button type="submit" class="btn btn-primary">Update Profile</button>
+                    </div>
+                  </div>
+                  <div class="col-4"></div>
+                </div>
+                <div class="row  text-center" *ngIf="fileName">
+                  <div class="col"><br>
+                    <button class="btn btn-primary btn-block" type="button" routerLink="/profile" (click)="downloadFile()">Download - {{fileName}}</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

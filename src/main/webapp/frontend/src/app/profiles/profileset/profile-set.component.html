@@ -1,0 +1,138 @@
+<section class="profile-set-section">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <div class="center-pill text-center">
+              <h3 style="color: #337ab7;">Insert ProfileSet Query</h3>
+              <div class="center-pill text-center" *ngIf="validMessage != ''">
+              </div>
+            </div>
+            <div class="wrapper">
+              <form [formGroup]="profileSetForm" (ngSubmit)="addNewProfileSet()">
+                <div class="row">
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="name">Name</label>
+                      <input formControlName="name" name="name" id="name" type="text" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="createdBy">CreatedBy</label>
+                      <input formControlName="createdBy" name="createdBy" id="createdBy" type="text"
+                             class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="description">Description</label>
+                      <input formControlName="description" name="description" id="description" type="text"
+                             class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="updateState">UpdateState</label>
+                      <select formControlName="updateState" name="updateState" id="updateState" class="form-select">
+                        <option label="* - Select" value="" selected="selected">* - Select</option>
+                        <option value="PUSHED_TO_CONFIG">PUSHED_TO_CONFIG</option>
+                        <option value="WAITING_FOR_PUSH">WAITING_FOR_PUSH</option>
+                        <option value="WAITING_VALIDATION">WAITING_VALIDATION</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-group col-4">
+                    <label data-translate="subIssuer">SubIssuer</label>
+                    <select formControlName="subIssuerId" id="transaction-subIssuerId" class="form-select" title="Choose Subissuer Id">
+                      <option label="* - Select" value="" selected="selected">* - Select</option>
+                      <option *ngFor="let subIssuer of subIssuers;" value="{{ subIssuer.id }}">{{ subIssuer.name }}</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-4"></div>
+                  <div class="col-4">
+                    <div class="form-group text-center">
+                      <p class="has-info" style="color: green">{{validMessage}} </p>
+                      <button type="submit" [disabled]="!profileSetForm.valid" class="btn btn-primary">Generate Sql
+                      </button>
+                    </div>
+                  </div>
+                  <div class="col-4"></div>
+                </div>
+                <div class="row  text-center" *ngIf="filename">
+                  <div class="col"><br>
+                    <button class="btn btn-primary btn-block" type="button" (click)="downloadFile()">Download
+                      - {{filename}}</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="center-pill text-center"
+             style="border: 1px solid white; background-color: white ; padding-top: 10px; padding-bottom: 10px">
+          <h2 style="color: #337ab7">ProfileSets List</h2>
+        </div>
+        <div class="card-body">
+          <div>
+            <table class="table text-center table-bordered">
+              <thead>
+              <tr>
+                <th>Created By</th>
+                <th>Creation Date</th>
+                <th>Description</th>
+                <th>Last Update By</th>
+                <th>Last Update Date</th>
+                <th>Profile name</th>
+                <th>UpdateState</th>
+                <th>SubIssuer code - name </th>
+                <th scope="col" colspan="2">Actions</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let profileSet of profileSets | paginate: { itemsPerPage: 10, currentPage: page, totalItems: total}" class="wrapper">
+                <td>{{ profileSet.createdBy }}</td>
+                <td>{{ profileSet.creationDate | date:'MM.dd.yyyy'}}</td>
+                <td>{{ profileSet.description }}</td>
+                <td>{{ profileSet.lastUpdateBy }}</td>
+                <td>{{ profileSet.lastUpdateDate }}</td>
+                <td>{{ profileSet.name }}</td>
+                <td>{{ profileSet.updateState }}</td>
+                <td><span
+                  *ngIf="profileSet.subIssuer">{{ profileSet.subIssuer.code + '-' + profileSet.subIssuer.name }}</span></td>
+                <td class="d-flex align-items-center justify-content-center">
+                  <a [routerLink]="['/profileset/edit']" [state]="profileSet" class="btn btn-outline-primary"
+                     style="border: none;"><i style="font-size: 1.5rem; " class="fa fa-pencil-square-o"></i></a>
+                </td>
+                <td>
+                  <a routerLink="/profileset/{{ profileSet.id }}/delete" class="btn btn-outline-danger"
+                     style="border: none;">
+                    <i style="font-size: 1.5rem;" class="fa fa-trash-o"></i></a>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+            <div class="text-center">
+              <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

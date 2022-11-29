@@ -1,0 +1,166 @@
+<section class="profile-section">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <div class="center-pill text-center">
+              <h3 style="color: #337ab7;">Insert Profile Query</h3>
+              <div class="center-pill text-center" *ngIf="validMessage != ''">
+              </div>
+            </div>
+            <div class="wrapper">
+              <form [formGroup]="profileForm" (ngSubmit)="addNewProfile()">
+                <fieldset>
+                  <div class="row">
+                    <div class="col-4">
+                      <div class="form-group">
+                        <label for="name">Name</label>
+                        <input formControlName="name" name="name" id="name" type="text" class="form-control">
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="form-group">
+                        <label for="createdBy">CreatedBy</label>
+                        <input formControlName="createdBy" name="createdBy" id="createdBy" type="text"
+                               class="form-control">
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="form-group">
+                        <label for="description">Description</label>
+                        <input formControlName="description" name="description" id="description" type="text"
+                               class="form-control">
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="form-group">
+                        <label for="maxAttempts">MaxAttempts</label>
+                        <input formControlName="maxAttempts" name="maxAttempts" id="maxAttempts" type="number"
+                               class="form-control">
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="form-group">
+                        <label for="dataEntryFormat">DataEntryFormat</label>
+                        <input formControlName="dataEntryFormat" name="dataEntryFormat" id="dataEntryFormat" type="text"
+                               class="form-control">
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="form-group">
+                        <label for="dataEntryAllowedPattern">DataEntryAllowedPattern</label>
+                        <input formControlName="dataEntryAllowedPattern" name="dataEntryAllowedPattern"
+                               id="dataEntryAllowedPattern" type="text" class="form-control">
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="form-group">
+                        <label for="updateState">UpdateState</label>
+                        <select formControlName="updateState" name="updateState" id="updateState" class="form-select">
+                          <option label="* - Select" value="" selected="selected">* - Select</option>
+                          <option value="PUSHED_TO_CONFIG">PUSHED_TO_CONFIG</option>
+                          <option value="WAITING_FOR_PUSH">WAITING_FOR_PUSH</option>
+                          <option value="WAITING_VALIDATION">WAITING_VALIDATION</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group col-4">
+                      <label data-translate="authentMeans">AuthentMeans</label>
+                      <select id="authentMeansId" class="form-select" formControlName="authentMeansId">
+                        <option label="* - Select" value="" selected="selected">* - Select</option>
+                        <option *ngFor="let authentMean of authMeans;"
+                                value="{{ authentMean.id }}">{{ authentMean.name }}</option>
+                      </select>
+                    </div>
+                    <div class="form-group col-4">
+                      <label data-translate="subIssuers">Subissuer</label>
+                      <select id="subIssuerId" class="form-select" formControlName="subIssuerId">
+                        <option label="* - Select" value="" selected="selected">* - Select</option>
+                        <option *ngFor="let subIssuer of subIssuers;"
+                                value="{{ subIssuer.id }}">{{ subIssuer.name }}</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-4"></div>
+                    <div class="col-4">
+                      <div class="form-group text-center">
+                        <p class="has-info" style="color: green">{{validMessage}} </p>
+                        <button type="submit" [disabled]="!profileForm.valid" class="btn btn-primary btn-block">Generate
+                          Sql
+                        </button>
+                      </div>
+                    </div>
+                    <div class="col-4"></div>
+                  </div>
+                  <div class="row  text-center" *ngIf="filename">
+                    <div class="col"><br>
+                      <button class="btn btn-primary btn-block" type="button" (click)="downloadFile()">Download
+                        - {{filename}}</button>
+                    </div>
+                  </div>
+                </fieldset>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<br>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="center-pill text-center"
+             style="border: 1px solid white; background-color: white ; padding-top: 10px; padding-bottom: 10px">
+          <h2 style="color: #337ab7">Profile List</h2>
+        </div>
+        <div class="card-body">
+          <div>
+            <table class="table text-center table-bordered">
+              <thead>
+              <tr>
+                <th>Issuer code-name</th>
+                <th>SubIssuer code-name</th>
+                <th>Profile name</th>
+                <th>AuthenticationMean</th>
+                <th>Creation date</th>
+                <th scope="col" colspan="2">Actions</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let profile of profiles | paginate: { itemsPerPage: 10, currentPage: page, totalItems: total}" class="wrapper">
+                <td>
+                  <span *ngIf="profile.subIssuer">{{ profile.subIssuer.issuer.code + '-' + profile.subIssuer.issuer.name }}</span>
+                </td>
+                <td>
+                  <span *ngIf="profile.subIssuer">{{ profile.subIssuer.code + '-' + profile.subIssuer.name}}</span>
+                </td>
+                <td>{{ profile.name }}</td>
+                <td>{{ profile.authentMeans.name }}</td>
+                <td>{{ profile.creationDate | date:'MM.dd.yyyy'}}</td>
+                <td>
+                  <a [routerLink]="['/profile/edit']" [state]="profile" class="btn btn-outline-primary"
+                     style="border: none;">
+                    <i style="font-size: 1.5rem; " class="fa fa-pencil-square-o"></i></a>
+                </td>
+                <td>
+                  <a routerLink="/profile/delete/{{ profile.id }}" class="btn btn-outline-danger" style="border: none;">
+                    <i style="font-size: 1.5rem;" class="fa fa-trash-o"></i></a>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+            <div class="text-center">
+              <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

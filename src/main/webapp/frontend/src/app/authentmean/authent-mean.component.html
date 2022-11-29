@@ -1,0 +1,109 @@
+<section class="authentMeans_section" style="padding: 15px 0 !important;">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <div class="center-pill text-center">
+              <h3 style="color: #337ab7">Insert AuthentMeans Query</h3>
+            </div>
+            <div class="center-pill"></div>
+            <div class="wrapper">
+              <form [formGroup]="meanForm" (ngSubmit)="addNewAuthentMeans()">
+                <fieldset>
+                  <div class="row">
+                    <div class=" col-4 form-group ">
+                      <label for="name">Name</label>
+                      <input type="text" formControlName="name" id="name" class="form-control">
+                    </div>
+                    <div class=" col-4 form-group ">
+                      <label for="createdBy">CreatedBy</label>
+                      <input type="text" formControlName="createdBy" id="createdBy" class="form-control">
+                    </div>
+                    <div class=" col-4 form-group ">
+                      <label for="description">Description</label>
+                      <input type="text" formControlName="description" id="description" class="form-control">
+                    </div>
+                    <div class=" col-4 form-group ">
+                      <label for="lastUpdateBy">LastUpdateBy</label>
+                      <input type="text" formControlName="lastUpdateBy" id="lastUpdateBy" class="form-control">
+                    </div>
+                    <div class="col-4 form-group">
+                      <label for="updateState">Update State</label>
+                      <select formControlName="updateState" id="updateState" class="form-select">
+                        <option label="* - Select" value="" selected="selected">* - Select</option>
+                        <option value="PUSHED_TO_CONFIG">PUSHED_TO_CONFIG</option>
+                        <option value="WAITING_FOR_PUSH">WAITING_FOR_PUSH</option>
+                        <option value="WAITING_VALIDATION">WAITING_VALIDATION</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group text-center">
+                    <button type="submit" [disabled]="!meanForm.valid" class="btn btn-primary btn-block">Generate Sql
+                    </button>
+                    <div class="row  text-center" *ngIf="filename">
+                      <div class="col"><br>
+                        <button class="btn btn-primary btn-block" type="button" (click)="downloadFile()">Download
+                          - {{filename}}</button>
+                      </div>
+                    </div>
+                  </div>
+                </fieldset>
+              </form>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+</section>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="center-pill text-center"
+             style="border: 1px solid white; background-color: white ; padding-top: 10px; padding-bottom: 10px">
+          <h2 style="color: #337ab7">AuthentMeans List</h2>
+        </div>
+        <div class="card-body">
+          <table class="table text-center table-bordered">
+            <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">CreationDate</th>
+              <th scope="col">CreatedBy</th>
+              <th scope="col">Description</th>
+              <th scope="col">LastUpdateBy</th>
+              <th scope="col">UpdateState</th>
+              <th scope="col" colspan="2">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let mean of means | paginate: { itemsPerPage: 10, currentPage: page, totalItems: total}" class="wrapper">
+              <td>{{ mean.name }}</td>
+              <td>{{ mean.creationDate | date:'MM.dd.yyyy'}}</td>
+              <td>{{ mean.createdBy }}</td>
+              <td>{{ mean.description }}</td>
+              <td>{{ mean.lastUpdateBy }}</td>
+              <td>{{ mean.updateState }}</td>
+              <td>
+                <a [routerLink]="['/authent/edit']" [state]="mean" class="btn btn-outline-primary" style="border: none;">
+                  <i style="font-size: 1.5rem; " class="fa fa-pencil-square-o"></i></a>
+              </td>
+              <td>
+                <a routerLink="/authent/delete/{{mean.id}}" class="btn btn-outline-danger" style="border: none;">
+                  <i style="font-size: 1.5rem; " class="fa fa-trash-o"></i></a>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+          <div class="text-center">
+            <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

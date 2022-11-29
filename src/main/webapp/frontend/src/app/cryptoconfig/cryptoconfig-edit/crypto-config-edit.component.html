@@ -1,0 +1,54 @@
+<section class="crypto-section">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <div class="center-pill text-center"
+              style="border: 1px solid white; background-color: white ; padding-top: 10px; padding-bottom: 10px">
+              <h3 style="color: #337ab7">Update CryptoConfig</h3>
+            </div>
+            <div class="wrapper">
+              <form [formGroup]="cryptoConfigEditForm" (ngSubmit)="updateCryptoConfig()">
+                <div class="row">
+                  <div class="col-2">
+                    <div class="form-group">
+                      <label for="description"><b>Description: </b></label>
+                      <input type="text" id="description" formControlName="description" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-5">
+                    <div class="form-group">
+                      <label for="protocolOne"><b>ProtocolOne: </b></label>
+                      <textarea id="protocolOne" formControlName="protocolOne" class="form-control textarea-resize-hide" rows="8" cols="80"></textarea>
+                    </div>
+                  </div>
+                  <div class="col-5">
+                    <div class="form-group">
+                      <label for="protocolTwo"><b>ProtocolTwo: </b></label>
+                      <textarea id="protocolTwo" formControlName="protocolTwo" class="form-control textarea-resize-hide" rows="8" cols="80"></textarea>
+                    </div>
+                  </div>
+                </div>
+                <div class="row mt-4">
+                  <div class="col-4"></div>
+                  <div class="col-4 text-center">
+                    <a routerLink="/crypto" class="btn btn-primary" style="margin: 0px 5px;">Back</a>
+                    <button type="submit" [disabled]="!cryptoConfigEditForm.valid" class="btn btn-primary btn-block">Update CryptoConfig</button>
+                  </div>
+                  <div class="col-4"></div>
+                </div>
+                <div class="row  text-center" *ngIf="filename">
+                  <div class="col"><br>
+                    <button class="btn btn-primary btn-block" type="button" routerLink="/crypto" (click)="downloadSqlFile()">Download
+                      - {{filename}}</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

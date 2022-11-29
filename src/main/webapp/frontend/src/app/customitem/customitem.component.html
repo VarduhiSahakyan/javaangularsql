@@ -1,0 +1,145 @@
+<section class="customitem_section" style="padding: 15px 0 !important;">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <div class="center-pill text-center">
+              <h3 style="color: #337ab7;">Insert Custom Item Query</h3>
+            </div>
+            <div class="center-pill text-center" *ngIf="validMessage != ''" >
+            </div>
+            <div class="wrapper">
+              <form [formGroup]="customItemForm" (ngSubmit)="onSubmit()">
+                <fieldset>
+                  <div class="row">
+                    <div class="col-4">
+                      <div class="form-group">
+                        <label for="code">Code</label>
+                        <input formControlName="code" name="code" id="code" class="form-control" type="text"
+                               placeholder=""/>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="form-group">
+                        <label for="createdBy">Created By</label>
+                        <input formControlName="createdBy" name="createdBy" id="createdBy" class="form-control"
+                               type="text" placeholder=""/>
+                      </div>
+                    </div>
+
+                    <div class="col-4">
+                      <div class="form-group">
+                        <label for="name">Name</label>
+                        <input formControlName="name" name="name" id="name" class="form-control" type="text"
+                               placeholder=""/>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="form-group">
+                        <label for="updateState">Update State</label>
+                        <select formControlName="updateState" name="updateState" id="updateState" class="form-select">
+                          <option label="* - Select" value="" selected="selected">* - Select</option>
+                          <option value="PUSHED_TO_CONFIG">PUSHED_TO_CONFIG</option>
+                          <option value="WAITING_FOR_PUSH">WAITING_FOR_PUSH</option>
+                          <option value="WAITING_VALIDATION">WAITING_VALIDATION</option>
+                        </select>
+                      </div>
+                    </div>
+<!--                    <div class="col-4">-->
+<!--                      <div class="form-group">-->
+<!--                        <label for="label">Label</label>-->
+<!--                        <input formControlName="label" name="label" id="label" class="form-control" type="text"-->
+<!--                               placeholder=""/>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-4">-->
+<!--                      <div class="form-group">-->
+<!--                        <label for="availaibleAuthentMeans">AvailaibleAuthentMeans</label>-->
+<!--                        <input formControlName="availaibleAuthentMeans" name="availaibleAuthentMeans"-->
+<!--                               id="availaibleAuthentMeans" class="form-control" type="text" placeholder=""/>-->
+<!--                      </div>-->
+<!--                    </div>-->
+                  </div>
+                  <div class="row">
+                    <div class="col-4"></div>
+                    <div class="col-4">
+                      <div class="form-group text-center">
+                        <p class="has-info" style="color: green" >{{validMessage}} </p>
+                        <button type="submit" [disabled]="!customItemForm.valid" class="btn btn-primary">Generate Sql
+                        </button>
+                      </div>
+                    </div>
+                    <div class="col-4"></div>
+                  </div>
+                  <div class="row  text-center" *ngIf="filename">
+                    <div class="col"><br>
+                      <button class="btn btn-primary btn-block" type="button" (click)="downloadFile()">Download
+                        - {{filename}}</button>
+                    </div>
+                  </div>
+                </fieldset>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="center-pill text-center"
+             style="border: 1px solid white; background-color: white ; padding-top: 10px; padding-bottom: 10px">
+          <h2 style="color: #337ab7">CustomItems List</h2>
+        </div>
+        <div class="card-body">
+          <div>
+            <table class="table text-center table-bordered">
+              <thead>
+              <tr>
+                <th scope="col">Value</th>
+                <th scope="col">Name</th>
+                <th scope="col">Ordinal</th>
+                <th scope="col">CreatedBy</th>
+                <th scope="col">UpdateState</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let customItem of customItems| paginate: { itemsPerPage: 10, currentPage: page, totalItems: total}" class="wrapper">
+                <td>
+                  <span>{{ customItem.value }}</span>
+                </td>
+                <td>
+                  <span>{{ customItem.name }}</span>
+                </td>
+                <td>
+                  <span>{{ customItem.ordinal }}</span>
+                </td>
+                <td>
+                  <span>{{ customItem.createdBy }}</span>
+                </td>
+                <td>
+                  <span>{{ customItem.updateState }}</span>
+                </td>
+                <td>
+                  <a [routerLink]="['/customitem/edit']" [state]="customItem" class="btn btn-outline-primary" style="border: none;"><i style="font-size: 1.5rem; " class="fa fa-pencil-square-o"></i></a>
+                </td>
+                <td>
+                  <a routerLink="/customitem/{{ customItem.id }}/delete" class="btn btn-outline-danger" style="border: none;"><i style="font-size: 1.5rem;" class="fa fa-trash-o"></i></a>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+            <div class="text-center">
+              <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

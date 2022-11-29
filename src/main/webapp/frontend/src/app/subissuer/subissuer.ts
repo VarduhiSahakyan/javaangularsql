@@ -1,0 +1,62 @@
+import {Issuer} from "../issuer/issuer";
+import {CryptoConfig} from "../cryptoconfig/crypto-config";
+
+export class Subissuer {
+
+  id: number =0;
+  acsId: string = '';
+  authenticationTimeout: number = 0;
+  backupLanguages: string = '';
+  code: string = '';
+  codeSvi: string = '';
+  currencyCode: string = '';
+  createdBy: string = '';
+  creationDate: Date = new Date();
+  description: string = '';
+  lastUpdateBy: string = '';
+  lastUpdateDate: Date = new Date();
+  name: string = '';
+  updateState: string = '';
+  defaultLanguage: string = '';
+  freshnessPeriod: number = 0;
+  label: string = '';
+  manageBackupsCombinedAmounts: boolean = false;
+  manageChoicesCombinedAmounts: boolean = false;
+  personnalDataStorage: boolean = false;
+  resetBackupsIfSuccess: boolean = false;
+  resetChoicesIfSuccess: boolean = false;
+  transactionTimeout: number = 0;
+  acs_URL1_VE_MC: string = '';
+  acs_URL2_VE_MC: string = '';
+  acs_URL1_VE_VISA: string = '';
+  acs_URL2_VE_VISA: string = '';
+  automaticDeviceSelection: boolean = false;
+  userChoiceAllowed: boolean = false;
+  backupAllowed: boolean = false;
+  defaultDeviceChoice: boolean = false;
+  preferredAuthentMeans: string = '';
+  issuerCountry:  string = '';
+  hubCallMode: string = '';
+  rbaThreshold: number = 0;
+  maskParams: string = '';
+  dateFormat: string = '';
+  formattedDateJavaFormat: string = '';
+  twoStepCancellation: number = 0;
+  paChallengePublicUrl: string = '';
+  verifyCardStatus: number = 0;
+  DS2AdditionalInfo: string = '';
+  permanentStrongMeansCounter: number = 0;
+  resendOTPThreshold: number = 0;
+  resendSameOTP: boolean = false;
+  combinedAuthenticationAllowed: boolean = false;
+  protocol2FlowMode: string = '';
+  displayLanguageSelectPage:  boolean = false;
+  trustedBeneficiariesAllowed: boolean = false;
+  authentMeans: string = '';
+  currencyFormat: string = '';
+  npaEnabled: boolean = false;
+  hubMaintenanceModeEnabled: boolean = false;
+  issuer: Issuer = {} as Issuer;
+  cryptoConfigEntity: CryptoConfig = {} as CryptoConfig;
+}
+

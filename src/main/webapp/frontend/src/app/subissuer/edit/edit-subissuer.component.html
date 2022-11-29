@@ -1,0 +1,176 @@
+<section class="sub_issuer_section">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <div class="center-pill text-center">
+              <h2 style="color: #337ab7">Update SubIssuer</h2>
+            </div>
+            <div class="wrapper">
+              <form [formGroup]="editSubIssuerForm" (ngSubmit)="editSubIssuerData()">
+                <div class="row  text-center" *ngIf="filename"></div>
+                <div class="row">
+                  <div class="form-group col-md-4">
+                    <label for="name" data-translate="name" class="ng-scope">Name</label>
+                    <input class="form-control" type="text" formControlName="name" id="name">
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label for="label" data-translate="label" class="ng-scope">Label</label>
+                    <input class="form-control" type="text" formControlName="label" id="label">
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label for="acsId" data-translate="acsId" class="ng-scope">Acs Id</label>
+                    <input class="form-control" type="text" formControlName="acsId" id="acsId">
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label for="authenticationTimeOut" data-translate="acsId" class="ng-scope">Authentication Timeout</label>
+                    <input class="form-control" type="number" formControlName="authenticationTimeout" id="authenticationTimeout">
+                  </div>
+                  <div class="form-group col-md-offset-1 col-md-4">
+                    <label for="backupLanguages">Backup Languages</label>
+                    <input class="form-control" type="text" formControlName="backupLanguages" id="backupLanguages">
+                  </div>
+                  <div class="form-group col-md-offset-1 col-md-4">
+                    <label for="createdBy">Created By</label>
+                    <input class="form-control" type="text" formControlName="createdBy" id="createdBy">
+                  </div>
+                  <div class="form-group col-md-offset-1 col-md-4">
+                    <label for="description" data-translate="description" class="ng-scope">Description</label>
+                    <input class="form-control" type="text" formControlName="description" id="description">
+                  </div>
+                  <div class="form-group col-md-offset-1 col-md-4">
+                    <label for="lastUpdateBy" data-translate="lastUpdateBy" class="ng-scope">Last Update By</label>
+                    <input class="form-control" type="text" formControlName="lastUpdateBy" id="lastUpdateBy">
+                  </div>
+                  <div class="form-group col-md-offset-1 col-md-4">
+                    <label for="transactionTimeOut" data-translate="transactionTimeOut" class="ng-scope">Transaction Timeout</label>
+                    <input class="form-control" type="number" formControlName="transactionTimeout" id="transactionTimeout">
+                  </div>
+                  <div class="form-group col-md-offset-1 col-md-4">
+                    <label for="updateState">Update State</label>
+                    <select  formControlName="updateState" id="updateState" class="form-select">
+                      <option value="PUSHED_TO_CONFIG">PUSHED_TO_CONFIG</option>
+                      <option value="WAITING_FOR_PUSH">WAITING_FOR_PUSH</option>
+                      <option value="WAITING_VALIDATION">WAITING_VALIDATION</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-md-offset-1 col-md-4">
+                    <label for="defaultLanguage">Default Language</label>
+                    <input class="form-control" type="text" formControlName="defaultLanguage" id="defaultLanguage">
+                  </div>
+                  <div class="form-group col-md-offset-1 col-md-4">
+                    <label for="codeSvi">CodeSvi</label>
+                    <input class="form-control" type="text" formControlName="codeSvi" id="codeSvi">
+                  </div>
+                  <div class="form-group col-md-offset-1 col-md-4">
+                    <label for="currencyCode">CurrencyCode</label>
+                    <input class="form-control" type="text" formControlName="currencyCode" id="currencyCode">
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label for="authentMeans" data-translate="authentMeans">Authent Means</label>
+                    <input id="authentMeans" name="authentMeans" type="text" class="form-control input-sm" formControlName="authentMeans">
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="form-group col-md-4">
+                    <div class="input-group mb-3" style="margin-top: 15px;">
+                      <div class="input-group-prepend">
+                        <input class="form-check-input" type="checkbox" formControlName="automaticDeviceSelection" id="automaticDeviceSelection">
+                      </div>
+                      <label class="form-check-label" style="margin-left: 15px;" for="automaticDeviceSelection">Automatic Device Selection</label>
+                    </div>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <div class="input-group mb-3" style="margin-top: 15px;">
+                      <div class="input-group-prepend">
+                        <input class="form-check-input" type="checkbox" formControlName="userChoiceAllowed" id="userChoiceAllowed">
+                      </div>
+                      <label class="form-check-label" style="margin-left: 15px;" for="userChoiceAllowed">User Choice Allowed</label>
+                    </div>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <div class="input-group mb-3" style="margin-top: 15px;">
+                      <div class="input-group-prepend">
+                        <input class="form-check-input" type="checkbox" formControlName="backupAllowed" id="backupAllowed">
+                      </div>
+                      <label class="form-check-label" style="margin-left: 15px;" for="backupAllowed">Backup Allowed</label>
+                    </div>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <div class="input-group mb-3" style="margin-top: 15px;">
+                      <div class="input-group-prepend">
+                        <input class="form-check-input" type="checkbox" formControlName="defaultDeviceChoice" id="defaultDeviceChoice">
+                      </div>
+                      <label class="form-check-label" style="margin-left: 15px;" for="defaultDeviceChoice">Default Device Choice</label>
+                    </div>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <div class="input-group mb-3" style="margin-top: 15px;">
+                      <div class="input-group-prepend">
+                        <input class="form-check-input" type="checkbox" formControlName="personnalDataStorage" id="personnalDataStorage">
+                      </div>
+                      <label class="form-check-label" style="margin-left: 15px;" for="personnalDataStorage">Personal Data Storage</label>
+                    </div>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <div class="input-group mb-3" style="margin-top: 15px;">
+                      <div class="input-group-prepend">
+                        <input class="form-check-input" type="checkbox" formControlName="resetBackupsIfSuccess" id="resetBackupsIfSuccess">
+                      </div>
+                      <label class="form-check-label" style="margin-left: 15px;" for="resetBackupsIfSuccess">Reset Backups If Success</label>
+                    </div>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <div class="input-group mb-3" style="margin-top: 15px;">
+                      <div class="input-group-prepend">
+                        <input class="form-check-input" type="checkbox" formControlName="resetChoicesIfSuccess" id="resetChoicesIfSuccess">
+                      </div>
+                      <label class="form-check-label" style="margin-left: 15px;" for="resetChoicesIfSuccess">Reset Choices If Success</label>
+                    </div>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <div class="input-group mb-3" style="margin-top: 15px;">
+                      <div class="input-group-prepend">
+                        <input class="form-check-input" type="checkbox" formControlName="manageBackupsCombinedAmounts" id="manageBackupsCombinedAmounts">
+                      </div>
+                      <label class="form-check-label" style="margin-left: 15px;" for="manageBackupsCombinedAmounts">Manage Backups Combined Amounts</label>
+                    </div>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <div class="input-group mb-3" style="margin-top: 15px;">
+                      <div class="input-group-prepend">
+                        <input class="form-check-input" type="checkbox" formControlName="manageChoicesCombinedAmounts" id="manageChoicesCombinedAmounts">
+                      </div>
+                      <label class="form-check-label" style="margin-left: 15px;" for="manageChoicesCombinedAmounts">Manage Choices Combined Amounts</label>
+                    </div>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <div class="input-group mb-3" style="margin-top: 15px;">
+                      <div class="input-group-prepend">
+                        <input class="form-check-input" type="checkbox" formControlName="hubMaintenanceModeEnabled" id="hubMaintenanceModeEnabled">
+                      </div>
+                      <label class="form-check-label" style="margin-left: 15px;" for="hubMaintenanceModeEnabled">Hub Maintenance Mode Enabled</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group text-center">
+                  <a class="btn btn-primary" href="" routerLink="/subissuer">Back</a>&nbsp;
+                  <button type="submit" class="btn btn-primary">Update SubIssuer</button>
+                </div>
+              </form>
+              <div class="form-group text-center">
+                <div class="row  text-center" *ngIf="filename">
+                  <div class="col"><br>
+                    <button class="btn btn-primary btn-block" type="button" routerLink="/subissuer" (click)="downloadFile()">Download -{{filename}}</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

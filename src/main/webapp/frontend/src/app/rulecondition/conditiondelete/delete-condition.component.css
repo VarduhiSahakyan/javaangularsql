@@ -1,0 +1,21 @@
+.rule_condition_section {
+  padding: 100px 0;
+}
+
+.wrapper {
+  padding: 14px;
+  margin-top: 20px;
+  background-color: #fff;
+  border: 1px solid #e1e1e8;
+  border-radius: 4px;
+  overflow: auto;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group > a {
+  margin-left: 10px;
+  margin-right: 10px;
+}

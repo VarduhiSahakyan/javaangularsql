@@ -1,0 +1,93 @@
+<section class="customitem_section">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <div class="center-pill text-center">
+              <h3 style="color: #337ab7;">Update Custom Item</h3>
+            </div>
+            <div class="wrapper">
+              <form [formGroup]="customItemEditForm" (ngSubmit)="editCustomItem()">
+                <div class="row">
+<!--                  <div class="col-4">-->
+<!--                    <div class="form-group">-->
+<!--                      <label for="code">Code</label>-->
+<!--                      <input type="text" formControlName="code" id="code" readonly="true" class="form-control">-->
+<!--                    </div>-->
+<!--                  </div>-->
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="name">Value</label>
+                      <input type="text" formControlName="value" id="value" class="form-control" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="name">Name</label>
+                      <input type="text" formControlName="name" id="name" class="form-control" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="name">Ordinal</label>
+                      <input type="number" formControlName="ordinal" id="ordinal" class="form-control">
+                    </div>
+                  </div>
+<!--                  <div class="col-4">-->
+<!--                    <div class="form-group">-->
+<!--                      <label for="name">Description</label>-->
+<!--                      <input type="text" formControlName="description" id="description" class="form-control">-->
+<!--                    </div>-->
+<!--                  </div>-->
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="createdBy">Created By</label>
+                      <input type="text" formControlName="createdBy" id="createdBy" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="updateState">UpdateState</label>
+                      <select  formControlName="updateState" id="updateState" class="form-select">
+                        <option value="PUSHED_TO_CONFIG">PUSHED_TO_CONFIG</option>
+                        <option value="WAITING_FOR_PUSH">WAITING_FOR_PUSH</option>
+                        <option value="WAITING_VALIDATION">WAITING_VALIDATION</option>
+                      </select>
+                    </div>
+                  </div>
+<!--                  <div class="col-4">-->
+<!--                    <div class="form-group">-->
+<!--                      <label for="availableAuthentMeans">Available AuthentMeans</label>-->
+<!--                      <input type="text" formControlName="availableAuthentMeans" id="availableAuthentMeans" class="form-control">-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                  <div class="col-4">-->
+<!--                    <div class="form-group">-->
+<!--                      <label for="creationDate">Creation Date</label>-->
+<!--                      <input type="text" formControlName="creationDate" id="creationDate" readonly class="form-control">-->
+<!--                    </div>-->
+<!--                  </div>-->
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <div class="form-group text-center">
+                      <a class="btn btn-outline-primary" routerLink="/cusomitem">Back</a>
+                      <button type="submit" [disabled]="!customItemEditForm.valid" class="btn btn-primary">Update Custom Item</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="row  text-center" *ngIf="filename">
+                  <div class="col"><br>
+                    <button type="button" class="btn btn-primary btn-block"  (click)="downloadFile()">Download - {{filename}}</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+

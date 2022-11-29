@@ -1,0 +1,63 @@
+<section class="image_section">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <div class="center-pill text-center">
+              <h3 style="color: #337ab7">Update Image</h3>
+            </div>
+            <div class="wrapper">
+              <form [formGroup]="editImageForm" (ngSubmit)="updateImage()">
+                <div class="row">
+                  <div class="form-group col-4">
+                    <label for="name">Name</label>
+                    <input type="text" formControlName="name" id="name" class="form-control">
+                  </div>
+                  <div class="form-group col-4">
+                    <label for="createdBy">CreatedBy</label>
+                    <input type="text" formControlName="createdBy" id="createdBy" class="form-control">
+                  </div>
+                  <div class="form-group col-4">
+                    <label for="description">Description </label>
+                    <input type="text" formControlName="description" id="description" class="form-control">
+                  </div>
+                  <div class="form-group col-4">
+                    <label for="lastUpdateBy">LastUpdateBy</label>
+                    <input type="text" formControlName="lastUpdateBy" id="lastUpdateBy" class="form-control">
+                  </div>
+                  <div class="form-group col-4">
+                    <label for="updateState">UpdateState</label>
+                    <select formControlName="updateState" id="updateState" class="form-select">
+                      <option value="PUSHED_TO_CONFIG">PUSHED_TO_CONFIG</option>
+                      <option value="WAITING_FOR_PUSH">WAITING_FOR_PUSH</option>
+                      <option value="WAITING_VALIDATION">WAITING_VALIDATION</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label for="binaryData">BinaryData</label>
+                    <input type="text" formControlName="binaryData" id="binaryData" class="form-control">
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label for="relativePath">RelativePath</label>
+                    <input type="text" formControlName="relativePath" id="relativePath" class="form-control">
+                  </div>
+                  <div class="form-group text-center">
+                    <a routerLink="/image" class="btn btn-primary" style="margin: 0px 5px;">Back</a>&nbsp;
+                    <button type="submit" [disabled]="!editImageForm.valid" class="btn btn-primary">Update Image</button>
+                  </div>
+                </div>
+                <div class="row  text-center" *ngIf="filename">
+                  <div class="col"><br>
+                    <button type="button" class="btn btn-primary btn-block" (click)="downloadFile()">Download -{{filename}}</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+

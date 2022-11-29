@@ -1,0 +1,70 @@
+<section class="rule_section">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <div class="center-pill text-center">
+              <h2 style="color: #337ab7">Update Rule</h2>
+            </div>
+            <div class="wrapper">
+              <form [formGroup]="editRuleForm" (ngSubmit)="updateRule()">
+                <div class="row">
+                  <div class="form-group col-4">
+                    <label for="creationDate">Creation Date</label>
+                    <input type="text" formControlName="creationDate" id="creationDate" class="form-control" readonly>
+                  </div>
+                  <div class="form-group col-4">
+                    <label for="lastUpdateDate">Last Update Date</label>
+                    <input type="text" formControlName="lastUpdateDate" id="lastUpdateDate" class="form-control" readonly>
+                  </div>
+                  <div class="form-group col-4">
+                    <label for="name">Name</label>
+                    <input type="text" formControlName="name" id="name"class="form-control">
+                  </div>
+                  <div class="form-group col-4">
+                    <label for="createdBy">Created By</label>
+                    <input  type="text" formControlName="createdBy" id="createdBy" class="form-control">
+                  </div>
+                  <div class="form-group col-4">
+                    <label for="description">Description </label>
+                    <input  type="text" formControlName="description" id="description"class="form-control">
+                  </div>
+                  <div class="form-group col-4">
+                    <label for="lastUpdateBy">Last Update By</label>
+                    <input  type="text" formControlName="lastUpdateBy" id="lastUpdateBy"class="form-control">
+                  </div>
+                  <div class="form-group col-4">
+                    <label for="updateState">UpdateState</label>
+                    <select  formControlName="updateState" id="updateState" class="form-select">
+                      <option value="PUSHED_TO_CONFIG">PUSHED_TO_CONFIG</option>
+                      <option value="WAITING_FOR_PUSH">WAITING_FOR_PUSH</option>
+                      <option value="WAITING_VALIDATION">WAITING_VALIDATION</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-4">
+                    <label for="orderRule">OrderRule</label>
+                    <input type="text" formControlName="orderRule" id="orderRule" class="form-control">
+                  </div>
+                  <div class="form-group text-center">
+                    <a routerLink="/rule" class="btn btn-primary" style="margin: 0px 5px;">Back</a>
+                    <button type="submit" [disabled]="!editRuleForm.valid" class="btn btn-primary">Update Rule</button>
+                  </div>
+                </div>
+                <div class="row  text-center" *ngIf="filename">
+                  <div class="col"><br>
+                    <button class="btn btn-primary btn-block" type="button" routerLink="/rule" (click)="downloadFile()">Download -
+                      {{filename}}</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
